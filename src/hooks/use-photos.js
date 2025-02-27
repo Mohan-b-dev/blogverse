@@ -15,9 +15,11 @@ const usePhotos = () => {
       if (following.length > 0) {
         followedUserPhotos = await getPhotos(userId, following);
       }
+      followedUserPhotos.sort((a,b) => b.dataCreated-a.dataCreated)
+      setPhotos(followedUserPhotos)
     }
     getTimelinePhotos();
-  }, []);
+  }, [userId]);
 
   return { photos };
 };
